@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const MonacoEditorSrc = path.join(__dirname, 'node_modules', 'react-monaco-editor');
 const VSMonacoEditorSrc = path.join(__dirname, 'node_modules', 'monaco-editor', 'min', 'vs');
@@ -68,7 +69,18 @@ module.exports = {
                 { from: 'public/lean_logo.svg', to: 'lean_logo.svg', },
                 { from: 'public/display-goal-light.svg', to: 'display-goal-light.svg', },
                 { from: 'public/display-list-light.svg', to: 'display-list-light.svg', },
+                { from: 'public/manifest.json', to: 'manifest.json' },
             ]
+        }),
+        new WorkboxPlugin.GenerateSW({
+            swDest: 'service-worker.js',
+            clientsClaim: true,
+            skipWaiting: true,
+            maximumFileSizeToCacheInBytes: 100 * 1024 * 1024,
+            runtimeCaching: [{
+                urlPattern: /.*\.(?:zip|json|js|wasm|css|html|svg)$/,
+                handler: 'CacheFirst',
+            }]
         }),
         new webpack.ProvidePlugin({
             Buffer: ['buffer', 'Buffer'],

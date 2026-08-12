@@ -1,0 +1,16 @@
+{
+  "short_name": "Lean3 Editor",
+  "name": "Lean 3 Web Editor Offline",
+  "icons": [
+    {
+      "src": "lean_logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#24a",
+  "description": "Full offline Lean 3 theorem prover editor"
+}
