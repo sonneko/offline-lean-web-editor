@@ -1,4 +1,4 @@
-# lean-web-editor
+# offline-lean-web-editor
 
 This repository contains the code for the leanprover-community fork of the [Lean 3 live editor](https://leanprover-community.github.io/lean-web-editor).
 
